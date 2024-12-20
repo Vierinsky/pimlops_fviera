@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from funciones import cantidad_filmaciones_mes
+import funciones 
 
 # Crea unas instancia de la aplicación
 app = FastAPI()
@@ -16,5 +16,5 @@ def obtener_fimalciones_mes(mes: str):
     Endpoint que devuelve la cantidad de películas estrenadas en un mes específico.
     - 'mes': Nombre del mes en español (string)
     '''
-    resultado = cantidad_filmaciones_mes(mes)
+    resultado = funciones.cantidad_filmaciones_mes(mes)
     return resultado
