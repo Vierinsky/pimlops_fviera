@@ -36,10 +36,10 @@ def home():
             </script>
         </head>
         <body>
-            <h1>Consulta la cantidad de palículas por mes</h1>
+            <h1>Consulta la cantidad de películas por mes</h1>
 
             <!-- Formulario para cantidad_filmaciones_mes -->
-            <h2>Cantidad de palículas por mes</h2>
+            <h2>Cantidad de películas por mes</h2>
             <form id="form_mes" onsubmit="event.preventDefault(); enviarFormulario('/cantidad-filmaciones-mes', 'form_mes', 'result_mes')">
                 <label for="mes">Escribe un mes en español:</label>
                 <input type="text" id="mes" name="mes" required>
