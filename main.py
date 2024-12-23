@@ -7,7 +7,7 @@ app = FastAPI()
 
 # Ruta principal con formulario HTML
 @app.get("/", response_class=HTMLResponse)
-def leer_formulario():
+def home():
     html_content = '''
     <html>
         <head>
