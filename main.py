@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Form
-from fastapi.responses import HTMLResponse # Nota: Agregar a REQUIREMENTS (?)
+from fastapi.responses import HTMLResponse 
 import funciones
 
 # Crea unas instancia de la aplicación

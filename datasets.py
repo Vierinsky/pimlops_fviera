@@ -1,4 +1,4 @@
-import os # Nota: AGREGAR A REQUIREMENTS (?)
+import os 
 import pandas as pd
 
 # Se obtiene la ruta base del proyecto
