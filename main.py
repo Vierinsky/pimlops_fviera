@@ -1,22 +1,32 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Form
+from fastapi.responses import HTMLResponse # Nota: Agregar a REQUIREMENTS (?)
 import funciones
-
-# COMPLETAR Y HACER PUSH
 
 # Crea unas instancia de la aplicación
 app = FastAPI()
 
-# Ruta raíz (GET /)
-@app.get("/")
-def read_root():
-    return {"message": "Hello, FastAPI!"}
+# Ruta principal con formulario HTML
+@app.get("/", response_class=HTMLResponse)
+def leer_formulario():
+    html_content = '''
+    <html>
+        <head>
+            <title>Consulta de Películas</title>
+        </head>
+        <body>
+            <h1>Consulta la cantidad de palículas por mes</h1>
+            <form action="cantidad-filmaciones" method="post">
+                <label for= "mes">Escribe un mes en español:</label><br><br>
+                <input type="text" id="mes" name="mes"><br><br>
+                <input type="submit" value="Enviar">            
+            </from>
+        </body>
+    </html>
+    '''
+    return HTMLResponse(content=html_content)
 
-# Función cantidad de filmaciones por mes
-@app.get('/filmaciones-mes')
-def obtener_fimalciones_mes(mes: str):
-    '''
-    Endpoint que devuelve la cantidad de películas estrenadas en un mes específico.
-    - 'mes': Nombre del mes en español (string)
-    '''
+# Endpoint para recibir datos del formulario
+@app.post('/cantidad-filmaciones')
+def procesar_formulario(mes: str = Form(...)):
     resultado = funciones.cantidad_filmaciones_mes(mes)
-    return resultado
+    return {"resultado": resultado}
