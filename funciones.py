@@ -1,17 +1,5 @@
 import pandas as pd
-
-# Se preparan los DataFrame a utilizar
-
-movies_date = pd.read_csv(r'C:\Users\felip\Desktop\Stuff\Cursos\SoyHenry\Clases\LABS\PI ML Ops\pi_mlops_felipeviera\datasets\movies_date.csv')
-movies_details = pd.read_csv(r'C:\Users\felip\Desktop\Stuff\Cursos\SoyHenry\Clases\LABS\PI ML Ops\pi_mlops_felipeviera\datasets\movies_details.csv')
-movies_score = pd.read_csv(r'C:\Users\felip\Desktop\Stuff\Cursos\SoyHenry\Clases\LABS\PI ML Ops\pi_mlops_felipeviera\datasets\movies_score.csv')
-
-movie_pop_date = pd.merge(
-pd.merge(movies_details, movies_date, on='movie_id', how='inner'), 
-movies_score, on='movie_id', how='inner'
-)
-
-movie_pop_date = movie_pop_date[['movie_id', 'title', 'release_year', 'popularity', 'vote_count', 'vote_average']]
+import datasets as ds
 
 # def cantidad_filmaciones_mes( Mes ): 
 # Se ingresa un mes en idioma Español. Debe devolver la cantidad de películas que fueron estrenadas en el mes consultado en la totalidad del dataset.
@@ -24,7 +12,7 @@ def cantidad_filmaciones_mes(mes_input: str):
         mes_usuario = mes_input.capitalize()
         meses_lista = ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
         if mes_usuario in meses_lista:
-            n_peliculas = movies_date[movies_date['release_month'] == mes_usuario].shape[0]
+            n_peliculas = ds.movies_dateds[ds.movies_date['release_month'] == mes_usuario].shape[0]
             return print(f'{n_peliculas} fueron estrenadas en el mes de {mes_usuario}')
         else:
             return print("Por favor introduce un mes válido")
@@ -40,7 +28,7 @@ def cantidad_filmaciones_dia(dia_input):
         dia_usuario = dia_input.capitalize()
         dias_lista = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
         if dia_usuario in dias_lista:
-            n_peliculas = movies_date[movies_date['release_day'] == dia_usuario].shape[0]
+            n_peliculas = ds.movies_date[ds.movies_date['release_day'] == dia_usuario].shape[0]
             return print(f'{n_peliculas} fueron estrenadas en los días {dia_usuario}')
         else:
             return "Por favor introduce un día válido"
@@ -57,7 +45,7 @@ def score_titulo(titulo_usuario):
         titulo = titulo_usuario.title()
 
         # Filtra el DataFrame en busca de filas que calcen con el título del usuario
-        respuesta_df = movie_pop_date.loc[movie_pop_date['title'] == titulo, ['title', 'release_year', 'popularity']]
+        respuesta_df = ds.movies_pop_date.loc[ds.movies_pop_date['title'] == titulo, ['title', 'release_year', 'popularity']]
 
         # Chequea si se encontraron filas
         if respuesta_df.empty:
@@ -87,7 +75,7 @@ def votos_titulo(titulo_usuario):
         titulo = titulo_usuario.title() 
         
         # Filtra el DataFrame en busca de filas que calcen con el título del usuario
-        respuesta_df = movie_pop_date.loc[movie_pop_date['title'] == titulo, ['title', 'release_year', 'vote_count', 'vote_average']]
+        respuesta_df = ds.movies_pop_date.loc[ds.movies_pop_date['title'] == titulo, ['title', 'release_year', 'vote_count', 'vote_average']]
 
         # Chequea si se encontraron filas
         if respuesta_df.empty:
@@ -118,7 +106,12 @@ def votos_titulo(titulo_usuario):
 # Además, la cantidad de películas que en las que ha participado y el promedio de retorno. La definición no deberá considerar directores.
 # * Ejemplo de retorno: El actor X ha participado de X cantidad de filmaciones, el mismo ha conseguido un retorno de X con un promedio de X por filmación
 
+# COMPLETAR
+
 
 # def get_director( nombre_director ): 
 # Se ingresa el nombre de un director que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. 
 # Además, deberá devolver el nombre de cada película con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma.
+
+
+# COMPLETAR
