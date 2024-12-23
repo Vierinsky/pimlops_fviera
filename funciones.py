@@ -9,16 +9,15 @@ import datasets as ds
 
 def cantidad_filmaciones_mes(mes_input: str):
     try:
-        print(ds.movies_date.head(3))
         mes_usuario = mes_input.capitalize()
         meses_lista = ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
         if mes_usuario in meses_lista:
             n_peliculas = ds.movies_date[ds.movies_date['release_month'] == mes_usuario].shape[0]
-            return print(f'{n_peliculas} fueron estrenadas en el mes de {mes_usuario}')
+            return f'{n_peliculas} fueron estrenadas en el mes de {mes_usuario}'
         else:
-            return print("Por favor introduce un mes válido")
+            return "Por favor introduce un mes válido"
     except Exception as e:
-        return print(f'Ocurrió un error inesperado {str(e)}')
+        return f'Ocurrió un error inesperado {str(e)}'
     
 # def cantidad_filmaciones_dia( Dia ): 
 # Se ingresa un día en idioma Español. Debe devolver la cantidad de películas que fueron estrenadas en día consultado en la totalidad del dataset.
