@@ -5,8 +5,6 @@ import datasets as ds
 # Se ingresa un mes en idioma Español. Debe devolver la cantidad de películas que fueron estrenadas en el mes consultado en la totalidad del dataset.
 # * Ejemplo de retorno: X cantidad de películas fueron estrenadas en el mes de X
 
-# Nota: ¿QUÉ FUNCIÓN DEVUELVA RESULTADOS EN FORMATO JSON?
-
 def cantidad_filmaciones_mes(mes_input: str):
     try:
         mes_usuario = mes_input.capitalize()
