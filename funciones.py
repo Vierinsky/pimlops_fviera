@@ -8,7 +8,8 @@ import datasets as ds
 # Nota: ¿QUÉ FUNCIÓN DEVUELVA RESULTADOS EN FORMATO JSON?
 
 def cantidad_filmaciones_mes(mes_input: str):
-    try:    
+    try:
+        print(ds.movies_date.head(3))
         mes_usuario = mes_input.capitalize()
         meses_lista = ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
         if mes_usuario in meses_lista:
