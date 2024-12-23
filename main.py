@@ -16,12 +16,22 @@ def home():
                 async function enviarFormulario(endpoint, formId, resultId) {
                     const form = document.getElementById(formId);
                     const formData = new FormData(form);
-                    const reponse = await fetch(enpoint, {
-                        method: "POST"
-                        body: formData
-                    });
-                    const data = await response.json();
-                    document.getElementById(resultId).innerText = data.resultado;
+                    try {
+                        const reponse = await fetch(enpoint, {
+                            method: "POST",
+                            body: formData
+                        });
+
+                        if (!response.ok) {
+                            document.getElementaryById(resultId).innerText = "Error en el servidor.";
+                            return;
+                        }
+                        const data = await response.json();
+                        document.getElementById(resultId).innerText = data.resultado;
+                    } catch (error) {
+                        console.error("Error en el envío del formulario:", error);
+                        document.getElementById(resultId).innerText = "Error en la conexión.";
+                    }
                 }
             </script>
         </head>
@@ -31,8 +41,8 @@ def home():
             <!-- Formulario para cantidad_filmaciones_mes -->
             <h2>Cantidad de palículas por mes</h2>
             <form id="form_mes" onsubmit="event.preventDefault(); enviarFormulario('/cantidad-filmaciones-mes', 'form_mes', 'result_mes')">
-                <label for= "mes">Escribe un mes en español:</label>
-                <input type="text" id="mes" name="mes">
+                <label for="mes">Escribe un mes en español:</label>
+                <input type="text" id="mes" name="mes" required>
                 <button type="submit">Enviar</button>            
             </from>
             <p id="result_mes"></p>
@@ -41,7 +51,7 @@ def home():
             <h2>Cantidad de películas por día</h2>
             <form id="form_dia" onsubmit="event.preventDefault(); enviarFormulario('/cantidad-filmaciones-dia', 'form_dia', 'result_dia')">
                 <label for="dia">Escribe un día:</label>
-                <input type="text" id="dia" name="dia">
+                <input type="text" id="dia" name="dia" required>
                 <button type="submit">Enviar</button>
             </form>
             <p id="result_dia"></p>
@@ -50,7 +60,7 @@ def home():
             <h2>Score de una película</h2>
             <form id="form_score" onsubmit="event.preventDefault(); enviarFormulario('/score-titulo', 'form_score', 'result_score')">
                 <label for="titulo">Escribe el título:</label>
-                <input type="text" id="titulo" name="titulo">
+                <input type="text" id="titulo" name="titulo" required>
                 <button type="submit">Enviar</button>
             </form>
             <p id="result_score"></p>
@@ -59,7 +69,7 @@ def home():
             <h2>Votos y promedio de una película</h2>
             <form id="form_votos" onsubmit="event.preventDefault(); enviarFormulario('/votos-titulo', 'form_votos', 'result_votos')">
                 <label for="titulo_votos">Escribe el título:</label>
-                <input type="text" id="titulo_votos" name="titulo">
+                <input type="text" id="titulo_votos" name="titulo" required>
                 <button type="submit">Enviar</button>
             </form>
             <p id="result_votos"></p>
