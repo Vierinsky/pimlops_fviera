@@ -13,7 +13,7 @@ def cantidad_filmaciones_mes(mes_input: str):
         meses_lista = ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
         if mes_usuario in meses_lista:
             n_peliculas = ds.movies_date[ds.movies_date['release_month'] == mes_usuario].shape[0]
-            return f'{n_peliculas} fueron estrenadas en el mes de {mes_usuario}'
+            return f'{n_peliculas} Peliculas fueron estrenadas en el mes de {mes_usuario}'
         else:
             return "Por favor introduce un mes válido"
     except Exception as e:
