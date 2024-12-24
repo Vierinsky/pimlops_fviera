@@ -5,6 +5,23 @@ from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_
 # Crea unas instancia de la aplicación
 app = FastAPI()
 
+# Página principal
+@app.get("/", response_class=HTMLResponse)
+def home():
+    return """
+    <html>
+        <body>
+            <h1>Bienvenido a la API de Películas</h1>
+            <ul>
+                <li><a href="/cantidad-filmaciones-mes">Cantidad de películas por mes</a></li>
+                <li><a href="/cantidad-filmaciones-dia">Cantidad de películas por día</a></li>
+                <li><a href="/score-titulo">Score de una película</a></li>
+                <li><a href="/votos-titulo">Votos y promedio de una película</a></li>
+            </ul>
+        </body>
+    </html>
+    """
+
 # Página para cantidad de filmaciones por mes
 @app.get("/cantidad-filmaciones-mes", response_class=HTMLResponse)
 def form_cantidad_filmaciones_mes():
