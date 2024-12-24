@@ -51,7 +51,7 @@ def resultado_cantidad_filmaciones_mes(mes: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <a href="/cantidad-filmaciones-mes">Atrás</a> <a href="/">Home</a>
+            <a href="/cantidad-filmaciones-mes">Atrás</a> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
@@ -66,7 +66,7 @@ def form_cantidad_filmaciones_dia():
             <form action="/cantidad-filmaciones-dia" method="post">
                 <label for="dia">Escribe un día en español:</label><br>
                 <input type="text" id="dia" name="dia" required><br>
-                <button type="submit">Enviar</button> <a href="/">Home</a>
+                <button type="submit">Enviar</button> <button type="button" onclick="window.location.href='/'">Home</button>
             </form>
         </body>
     </html>
@@ -80,7 +80,7 @@ def resultado_cantidad_filmaciones_dia(dia: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <a href="/cantidad-filmaciones-dia">Atrás</a> <a href="/">Home</a>
+            <a href="/cantidad-filmaciones-dia">Atrás</a> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
@@ -95,7 +95,7 @@ def form_score_titulo():
             <form action="/score-titulo" method="post">
                 <label for="titulo">Escribe el título:</label><br>
                 <input type="text" id="titulo" name="titulo" required><br>
-                <button type="submit">Enviar</button> <a href="/">Home</a>
+                <button type="submit">Enviar</button> <button type="button" onclick="window.location.href='/'">Home</button>
             </form>
         </body>
     </html>
@@ -109,7 +109,7 @@ def resultado_score_titulo(titulo: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <a href="/score-titulo">Atrás</a> <a href="/">Home</a>
+            <a href="/score-titulo">Atrás</a> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
@@ -124,7 +124,7 @@ def form_votos_titulo():
             <form action="/votos-titulo" method="post">
                 <label for="titulo">Escribe el título:</label><br>
                 <input type="text" id="titulo" name="titulo" required><br>
-                <button type="submit">Enviar</button> <a href="/">Home</a>
+                <button type="submit">Enviar</button> <button type="button" onclick="window.location.href='/'">Home</button>
             </form>
         </body>
     </html>
@@ -138,7 +138,7 @@ def resultado_votos_titulo(titulo: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <a href="/votos-titulo">Atrás</a> <a href="/">Home</a>
+            <a href="/votos-titulo">Atrás</a> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
