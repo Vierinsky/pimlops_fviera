@@ -32,7 +32,7 @@ def form_cantidad_filmaciones_mes():
             <form action="/cantidad-filmaciones-mes" method="post">
                 <label for="mes">Escribe un mes en español:</label><br>
                 <input type="text" id="mes" name="mes" required><br>
-                <button type="submit">Enviar</button> <button type="button" formaction="/">Enviar</button>
+                <button type="submit">Enviar</button> <button type="button" a href="/">Home</button>
             </form>
         </body>
     </html>
