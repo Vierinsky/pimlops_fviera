@@ -18,10 +18,10 @@ def home():
         <body>
             <h1>Bienvenido a la API de Películas</h1>
             <ul>
-                <li><a href="/cantidad-filmaciones-mes">Cantidad de películas por mes</a></li>
-                <li><a href="/cantidad-filmaciones-dia">Cantidad de películas por día</a></li>
-                <li><a href="/score-titulo">Score de una película</a></li>
-                <li><a href="/votos-titulo">Votos y promedio de una película</a></li>
+                <li><a href="/cantidad-filmaciones-mes">Películas estrenadas por mes</a></li>
+                <li><a href="/cantidad-filmaciones-dia">Películas estrenadas por día</a></li>
+                <li><a href="/score-titulo">Score/popularidad de una película</a></li>
+                <li><a href="/votos-titulo">Votos de una película</a></li>
             </ul>
         </body>
     </html>

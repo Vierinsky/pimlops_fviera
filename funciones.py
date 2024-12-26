@@ -27,7 +27,7 @@ def cantidad_filmaciones_dia(dia_input):
         dias_lista = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
         if dia_usuario in dias_lista:
             n_peliculas = ds.movies_date[ds.movies_date['release_day'] == dia_usuario].shape[0]
-            return print(f'{n_peliculas} fueron estrenadas en los días {dia_usuario}')
+            return f'{n_peliculas} fueron estrenadas en los días {dia_usuario}'
         else:
             return "Por favor introduce un día válido"
     except Exception as e:
@@ -56,16 +56,15 @@ def score_titulo(titulo_usuario):
                 f"La película {row['title']} fue estrenada en el año {row['release_year']} "
                 f"con un score/popularidad de {row['popularity']:.2f}."
             )
-        return print("\n".join(resultados))
+        return "\n".join(resultados)
     
     except Exception as e:
         return f'Ocurrió un error inesperado {str(e)}'
     
 # def votos_titulo( titulo_de_la_filmación ): 
-# Se ingresa el título de una filmación esperando como respuesta el título, la cantidad de votos y el valor promedio de las votaciones. La misma variable deberá de contar con al menos 2000 valoraciones, caso contrario, debemos contar con un mensaje avisando que no cumple esta condición y que por ende, no se devuelve ningun valor.
+# Se ingresa el título de una filmación esperando como respuesta el título, la cantidad de votos y el valor promedio de las votaciones. 
+# La misma variable deberá de contar con al menos 2000 valoraciones, caso contrario, debemos contar con un mensaje avisando que no cumple esta condición y que por ende, no se devuelve ningun valor.
 # * Ejemplo de retorno: La película X fue estrenada en el año X. La misma cuenta con un total de X valoraciones, con un promedio de X
-
-# Esta función utiliza las columnas 'title', 'release_year', 'vote_count', 'vote_average'
 
 def votos_titulo(titulo_usuario):
     try:
@@ -94,7 +93,7 @@ def votos_titulo(titulo_usuario):
                     f"La misma cuenta con un total de {row['vote_count']} valoraciones, con un promedio de {row['vote_average']}."
                 )
         # Une y retorna las respuestas separandolas por una nueva línea 
-        return print("\n".join(resultados))
+        return "\n".join(resultados)
     
     except Exception as e:
         return f'Ocurrió un error inesperado {str(e)}'
