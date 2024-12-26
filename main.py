@@ -4,7 +4,7 @@ from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_
 
 # TO-DO: 
 # * Corregir funcionamiento funciones, solo la primera funciona.
-# * Implementar boton home.
+# LISTO --> * Implementar boton home.
 
 
 # Crea unas instancia de la aplicación
@@ -51,7 +51,7 @@ def resultado_cantidad_filmaciones_mes(mes: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <a href="/cantidad-filmaciones-mes">Atrás</a> <button type="button" onclick="window.location.href='/'">Home</button>
+            <button type="button" onclick="window.location.href='/cantidad-filmaciones-mes'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
@@ -80,7 +80,7 @@ def resultado_cantidad_filmaciones_dia(dia: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <a href="/cantidad-filmaciones-dia">Atrás</a> <button type="button" onclick="window.location.href='/'">Home</button>
+            <button type="button" onclick="window.location.href='/cantidad-filmaciones-mes'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
@@ -109,7 +109,7 @@ def resultado_score_titulo(titulo: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <a href="/score-titulo">Atrás</a> <button type="button" onclick="window.location.href='/'">Home</button>
+            <button type="button" onclick="window.location.href='/score-titulo'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
@@ -138,7 +138,7 @@ def resultado_votos_titulo(titulo: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <a href="/votos-titulo">Atrás</a> <button type="button" onclick="window.location.href='/'">Home</button>
+            <button type="button" onclick="window.location.href='/votos-titulo'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
