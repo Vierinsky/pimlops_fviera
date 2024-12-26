@@ -80,7 +80,7 @@ def resultado_cantidad_filmaciones_dia(dia: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <button type="button" onclick="window.location.href='/cantidad-filmaciones-mes'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
+            <button type="button" onclick="window.location.href='/cantidad-filmaciones-dia'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
