@@ -141,7 +141,7 @@ def get_director(nombre_director):
 
         # Se revisa si el director tiene películas en el dataset
         if director_movies_details.empty:
-            return f"No se encontraron películas dirigidas por {nombre_director}."
+            return f"No se encontraron películas dirigidas por {nombre_director}.</b><br>"
         
         # Se calcula el "éxito" del director
         total_return = director_movies_details['return'].dropna().sum()
