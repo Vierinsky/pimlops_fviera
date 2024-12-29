@@ -3,15 +3,15 @@ from fastapi.responses import HTMLResponse
 from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_titulo, votos_titulo, get_actor, get_director
 
 # TO-DO: 
-# Hacer las 2 funciones faltantes.
-# Hacer páginas de las funciones faltantes en la API.
 # Hacer el modelo de recomendación.
 # Hacer endopoint de modelo.
 # Informe EDA. 
 # Hacer video.
 # BONUS: 
 #       * Hacer readme
-#       * Función votos_titulo devuelve solo una linea si respuesta consta de dos lineas. 
+#       LISTO -->* Función votos_titulo devuelve solo una linea si respuesta consta de dos lineas. 
+# LISTO --> Hacer las 2 funciones faltantes.
+# LISTO --> Hacer páginas de las funciones faltantes en la API.
 # LISTO --> * Corregir funcionamiento funciones, solo la primera funciona.
 # LISTO --> * Implementar boton home.
 
