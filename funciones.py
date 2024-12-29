@@ -53,13 +53,13 @@ def score_titulo(titulo_usuario):
         resultados = []
         for _, row in respuesta_df.iterrows():
             resultados.append(
-                f"La película {row['title']} fue estrenada en el año {row['release_year']} "
-                f"con un score/popularidad de {row['popularity']:.2f}."
+                f"<p>La película <b>{row['title']}</b> fue estrenada en el año <b>{row['release_year']}</b> "
+                f"con un score/popularidad de <b>{row['popularity']:.2f}</b>.</p>"
             )
         return "\n".join(resultados)
     
     except Exception as e:
-        return f'Ocurrió un error inesperado {str(e)}'
+        return f"<p>Ocurrió un error inesperado {str(e)}<p>"
     
 # def votos_titulo( titulo_de_la_filmación ): 
 # Se ingresa el título de una filmación esperando como respuesta el título, la cantidad de votos y el valor promedio de las votaciones. 

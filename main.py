@@ -118,8 +118,9 @@ def resultado_score_titulo(titulo: str = Form(...)):
     <html>
         <body>
             <h1>Resultado</h1>
-            <p>{resultado}</p>
-            <button type="button" onclick="window.location.href='/score-titulo'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
+            {resultado}
+            <button type="button" onclick="window.location.href='/score-titulo'">Atrás</button>
+            <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
@@ -181,3 +182,5 @@ def resultado_get_actor(actor: str = Form(...)):
         </body>
     </html>
     '''
+
+# Página para get_director
