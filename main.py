@@ -186,7 +186,7 @@ def resultado_get_actor(actor: str = Form(...)):
     '''
 
 # Página para get_director
-@app.get("/get-director", response_class=HTMLResponse)
+@app.get("/get_director", response_class=HTMLResponse)
 def form_get_director():
     return """
     <html>
@@ -201,7 +201,7 @@ def form_get_director():
     </html>
     """
 
-@app.post("/get-director", response_class=HTMLResponse)
+@app.post("/get_director", response_class=HTMLResponse)
 def resultado_get_director(nombre_director: str = Form(...)):
     resultado = get_director(nombre_director)
     return f"""
