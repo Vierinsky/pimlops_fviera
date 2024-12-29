@@ -159,7 +159,7 @@ def from_get_actor():
     return '''
     <html>
         <body>
-            <h1></h1>
+            <h1>Get Actor</h1>
             <form action="/get_actor" method="post">
                 <label for="actor">Escribe el nombre de un actor:<label><br>
                 <input type="text" id="actor" name="actor" required><br>
@@ -177,7 +177,7 @@ def resultado_get_actor(actor: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             <p>{resultado}</p>
-            <button type="button" onclick="window.location.href='/votos-titulo'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
+            <button type="button" onclick="window.location.href='/get_actor'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     '''

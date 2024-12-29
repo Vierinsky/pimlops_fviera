@@ -108,14 +108,14 @@ def get_actor(nombre_actor):
         nombre_actor = nombre_actor.title()
 
         if nombre_actor in ds.movies_directors['director_name'].tolist():
-            return f'El actor: {nombre_actor} Es también director. Por favor ingresa otro nombre.'
+            return f'{nombre_actor} Es también director. Por favor ingresa otro nombre.'
         elif nombre_actor in ds.movies_actors['actor_name'].tolist():
             filmaciones_sum = ds.movies_actors[ds.movies_actors['actor_name'] == nombre_actor].shape[0]
             merge_df = ds.movies_actors.merge(ds.movies_details, on='movie_id', how='inner')
             retorno_sum = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].sum()
             retorno_avg = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].mean()
 
-            return f'El actor {nombre_actor} ha participado de {filmaciones_sum} cantidad de filmaciones, el mismo ha conseguido un retorno de {retorno_sum:.2f} con un promedio de {retorno_avg:.2f} por filmación'
+            return f'{nombre_actor} ha participado de {filmaciones_sum} cantidad de filmaciones, el mismo ha conseguido un retorno de {retorno_sum:.2f} con un promedio de {retorno_avg:.2f} por filmación'
         else:
             return "Por favor introduce un nombre válido"
     except Exception as e:
