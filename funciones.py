@@ -142,6 +142,9 @@ def get_director(nombre_director):
         # Se revisa si el director tiene películas en el dataset
         if director_movies_details.empty:
             return f"No se encontraron películas dirigidas por {nombre_director}."
+        
+        # Se calcula el "éxito" del director
+        total_return = director_movies_details['return'].dropna().sum()
 
         # Se le da formato a la información de cada película
         resultados = []
@@ -154,8 +157,11 @@ def get_director(nombre_director):
                 f"Retorno: <b>{row['return']:.2f}</b></p>"
             )
 
-        # Se le hace join a los resultados en un solo string con formato HTML
-        return "".join(resultados)
+        # Se le hace join a los resultados en un string con formato HTML
+        return (
+            f"<p><b>Éxito total del director {nombre_director}: {total_return:.2f}</b></p>"
+            + "".join(resultados)
+        )
     
     except Exception as e:
         return f'<p>Ocurrió un error inesperado {str(e)}</p>'

@@ -31,7 +31,9 @@ def home():
                 <li><a href="/cantidad-filmaciones-dia">Películas estrenadas por día</a></li>
                 <li><a href="/score-titulo">Score/popularidad de una película</a></li>
                 <li><a href="/votos-titulo">Votos de una película</a></li>
-                <li><a href="/get_actor">Get actor</a></li>
+                <li><a href="/get_actor">Get Actor</a></li>
+                <li><a href="/get_director">Get Director</a></li>
+
             </ul>
         </body>
     </html>
@@ -193,8 +195,7 @@ def form_get_director():
             <form action="/get-director" method="post">
                 <label for="nombre_director">Escribe el nombre del director:</label><br>
                 <input type="text" id="nombre_director" name="nombre_director" required><br>
-                <button type="submit">Enviar</button>
-                <button type="button" onclick="window.location.href='/'">Home</button>
+                <button type="submit">Enviar</button> <button type="button" onclick="window.location.href='/'">Home</button>
             </form>
         </body>
     </html>
@@ -208,8 +209,7 @@ def resultado_get_director(nombre_director: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             {resultado}
-            <button type="button" onclick="window.location.href='/get-director'">Atrás</button>
-            <button type="button" onclick="window.location.href='/'">Home</button>
+            <button type="button" onclick="window.location.href='/get-director'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
