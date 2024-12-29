@@ -192,7 +192,7 @@ def form_get_director():
     <html>
         <body>
             <h1>Películas de un director</h1>
-            <form action="/get-director" method="post">
+            <form action="/get_director" method="post">
                 <label for="nombre_director">Escribe el nombre del director:</label><br>
                 <input type="text" id="nombre_director" name="nombre_director" required><br>
                 <button type="submit">Enviar</button> <button type="button" onclick="window.location.href='/'">Home</button>
@@ -209,7 +209,7 @@ def resultado_get_director(nombre_director: str = Form(...)):
         <body>
             <h1>Resultado</h1>
             {resultado}
-            <button type="button" onclick="window.location.href='/get-director'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
+            <button type="button" onclick="window.location.href='/get_director'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """
