@@ -1,9 +1,18 @@
 from fastapi import FastAPI, Form
 from fastapi.responses import HTMLResponse 
-from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_titulo, votos_titulo
+from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_titulo, votos_titulo, get_actor
 
 # TO-DO: 
-# * Corregir funcionamiento funciones, solo la primera funciona.
+# Hacer las 2 funciones faltantes.
+# Hacer páginas de las funciones faltantes en la API.
+# Hacer el modelo de recomendación.
+# Hacer endopoint de modelo.
+# Informe EDA. 
+# Hacer video.
+# BONUS: 
+#       * Hacer readme
+#       * Función votos_titulo devuelve solo una linea si respuesta consta de dos lineas. 
+# LISTO --> * Corregir funcionamiento funciones, solo la primera funciona.
 # LISTO --> * Implementar boton home.
 
 
@@ -22,6 +31,7 @@ def home():
                 <li><a href="/cantidad-filmaciones-dia">Películas estrenadas por día</a></li>
                 <li><a href="/score-titulo">Score/popularidad de una película</a></li>
                 <li><a href="/votos-titulo">Votos de una película</a></li>
+                <li><a href="/get_actor">Get actor</a></li>
             </ul>
         </body>
     </html>
@@ -142,3 +152,32 @@ def resultado_votos_titulo(titulo: str = Form(...)):
         </body>
     </html>
     """
+
+# Página para get_actor
+@app.get("/get_actor", response_class=HTMLResponse)
+def from_get_actor():
+    return '''
+    <html>
+        <body>
+            <h1></h1>
+            <form action="/get_actor" method="post">
+                <label for="actor">Escribe el nombre de un actor:<label><br>
+                <input type="text" id="actor" name="actor" required><br>
+                <button type="submit">Enviar</button> <button type="button" onclick="window.location.href='/'">Home</button>
+            </form>
+        </body>
+    </html>
+'''
+
+@app.post("/get_actor", response_class=HTMLResponse)
+def resultado_get_actor(actor: str = Form(...)):
+    resultado = get_actor(actor)
+    return f'''
+    <html>
+        <body>
+            <h1>Resultado</h1>
+            <p>{resultado}</p>
+            <button type="button" onclick="window.location.href='/votos-titulo'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
+        </body>
+    </html>
+    '''

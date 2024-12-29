@@ -1,8 +1,8 @@
 import os 
 import pandas as pd
 
-# Se obtiene la ruta base del proyecto
-base_path = os.path.dirname(r'C:\Users\felip\Desktop\Stuff\Cursos\SoyHenry\Clases\LABS\PI ML Ops\pi_mlops_felipeviera')
+# Dinamicamente se obtiene la ruta base del proyecto
+base_path = os.path.dirname(__file__)
 
 # Se construye la ruta relativa a los datasets
 movies_date_path = os.path.join(base_path, "datasets", "movies_date.csv")

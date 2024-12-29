@@ -103,8 +103,23 @@ def votos_titulo(titulo_usuario):
 # Además, la cantidad de películas que en las que ha participado y el promedio de retorno. La definición no deberá considerar directores.
 # * Ejemplo de retorno: El actor X ha participado de X cantidad de filmaciones, el mismo ha conseguido un retorno de X con un promedio de X por filmación
 
-# COMPLETAR
+def get_actor(nombre_actor):
+    try:
+        nombre_actor = nombre_actor.title()
 
+        if nombre_actor in ds.movies_directors['director_name'].tolist():
+            return f'El actor: {nombre_actor} Es también director. Por favor ingresa otro nombre.'
+        elif nombre_actor in ds.movies_actors['actor_name'].tolist():
+            filmaciones_sum = ds.movies_actors[ds.movies_actors['actor_name'] == nombre_actor].shape[0]
+            merge_df = ds.movies_actors.merge(ds.movies_details, on='movie_id', how='inner')
+            retorno_sum = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].sum()
+            retorno_avg = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].mean()
+
+            return f'El actor {nombre_actor} ha participado de {filmaciones_sum} cantidad de filmaciones, el mismo ha conseguido un retorno de {retorno_sum:.2f} con un promedio de {retorno_avg:.2f} por filmación'
+        else:
+            return "Por favor introduce un nombre válido"
+    except Exception as e:
+        return f'Ocurrió un error inesperado {str(e)}'
 
 # def get_director( nombre_director ): 
 # Se ingresa el nombre de un director que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. 
