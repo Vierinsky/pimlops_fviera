@@ -8,6 +8,8 @@ base_path = os.path.dirname(__file__)
 movies_date_path = os.path.join(base_path, "datasets", "movies_date.csv")
 movies_details_path = os.path.join(base_path, "datasets", "movies_details.csv")
 movies_score_path = os.path.join(base_path, "datasets", "movies_score.csv")
+movies_actors_path = os.path.join(base_path, "datasets", "movies_actors.csv")
+movies_directors_path = os.path.join(base_path, "datasets", "movies_directors.csv")
 
 # Se carga el dataset en una variable global
 try:
