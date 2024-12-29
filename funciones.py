@@ -125,5 +125,37 @@ def get_actor(nombre_actor):
 # Se ingresa el nombre de un director que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. 
 # Además, deberá devolver el nombre de cada película con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma.
 
+def get_director(nombre_director):
+    try:
+        # Se normaliza el nombre del director
+        nombre_director = nombre_director.title()
+        
+        # Se obtiene todos los id's de las películas del director
+        director_movies_id = ds.movies_directors.loc[ds.movies_directors['director_name'] == nombre_director, "movie_id"]
 
-# COMPLETAR
+        # Se hace merge para obtener fechas
+        merge_df = ds.movies_details.merge(ds.movies_date, on='movie_id', how='inner')
+
+        # Se filtra el detalle para cada Id
+        director_movies_details = merge_df[merge_df['movie_id'].isin(director_movies_id)]
+
+        # Se revisa si el director tiene películas en el dataset
+        if director_movies_details.empty:
+            return f"No se encontraron películas dirigidas por {nombre_director}."
+
+        # Se le da formato a la información de cada película
+        resultados = []
+        for _, row in director_movies_details.iterrows():
+            resultados.append(
+                f"<p>Título: <b>{row['title']}</b><br>"
+                f"Año de estreno: <b>{row['release_year']}</b><br>"
+                f"Revenue: <b>{row['revenue']:,}</b><br>"
+                f"Presupuesto: <b>{row['budget']:,}</b><br>"
+                f"Retorno: <b>{row['return']:.2f}</b></p>"
+            )
+
+        # Se le hace join a los resultados en un solo string con formato HTML
+        return "".join(resultados)
+    
+    except Exception as e:
+        return f'<p>Ocurrió un error inesperado {str(e)}</p>'

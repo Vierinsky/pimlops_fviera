@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Form
 from fastapi.responses import HTMLResponse 
-from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_titulo, votos_titulo, get_actor
+from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_titulo, votos_titulo, get_actor, get_director
 
 # TO-DO: 
 # Hacer las 2 funciones faltantes.
@@ -184,3 +184,32 @@ def resultado_get_actor(actor: str = Form(...)):
     '''
 
 # Página para get_director
+@app.get("/get-director", response_class=HTMLResponse)
+def form_get_director():
+    return """
+    <html>
+        <body>
+            <h1>Películas de un director</h1>
+            <form action="/get-director" method="post">
+                <label for="nombre_director">Escribe el nombre del director:</label><br>
+                <input type="text" id="nombre_director" name="nombre_director" required><br>
+                <button type="submit">Enviar</button>
+                <button type="button" onclick="window.location.href='/'">Home</button>
+            </form>
+        </body>
+    </html>
+    """
+
+@app.post("/get-director", response_class=HTMLResponse)
+def resultado_get_director(nombre_director: str = Form(...)):
+    resultado = get_director(nombre_director)
+    return f"""
+    <html>
+        <body>
+            <h1>Resultado</h1>
+            {resultado}
+            <button type="button" onclick="window.location.href='/get-director'">Atrás</button>
+            <button type="button" onclick="window.location.href='/'">Home</button>
+        </body>
+    </html>
+    """
