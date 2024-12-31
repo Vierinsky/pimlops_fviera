@@ -1,5 +1,8 @@
-import pandas as pd
 import datasets as ds
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.decomposition import PCA
+from sklearn.neighbors import NearestNeighbors
+
 
 # def cantidad_filmaciones_mes( Mes ): 
 # Se ingresa un mes en idioma Español. Debe devolver la cantidad de películas que fueron estrenadas en el mes consultado en la totalidad del dataset.
@@ -165,3 +168,98 @@ def get_director(nombre_director):
     
     except Exception as e:
         return f'<p>Ocurrió un error inesperado {str(e)}</p>'
+    
+# def recomendacion( titulo ): 
+#   Se ingresa el nombre de una película y te recomienda las similares en una lista de 5 valores
+
+# Se normalizan datos númericos continuos para que todos contribuyan al modelo de manera equitativa
+# Se inicializa el escalador
+scaler = MinMaxScaler()
+
+# Se seleccionan los datos númericos
+columnas_numericas = ['budget', 'popularity', 'revenue', 'release_year', 'return']
+
+# Se normaliza las columnas
+# fit_transform calcula valores minimo y máximo de cada columna y las escala según corresponda
+ds.movies_ml[columnas_numericas] = scaler.fit_transform(ds.movies_ml[columnas_numericas])
+
+# Se crea una matriz de características
+#   * La cual es un array 2D en el que cada fila representa una película 
+#     y cada columna representa una característica.
+# La similitud será calculada comparando filas de esta matriz
+
+caracteristicas_columnas = [
+    'budget', 'popularity', 'revenue', 'release_year', 'return',
+    'Action', 'Adventure', 'Animation', 'Comedy', 'Crime',
+    'African Languages', 'Asian Languages',
+    'Africa', 'Asia', 'Europe', 'North America', 'Oceania', 'South America' 
+]
+
+# .values convierte este subset del dataframe en un Numpy array 
+# que será usado en rápidas operaciones numéricas
+matriz_caracteristicas = ds.movies_ml[caracteristicas_columnas].values
+
+# Se disminuye el peso de las columnas binarias
+
+columnas_binarias = [
+    'Action', 'Adventure', 'Animation', 'Comedy', 'Crime',
+    'Documentary', 'Drama', 'Family', 'Fantasy', 'Foreign',
+    'History', 'Horror', 'Music', 'Mystery', 'Romance',
+    'Science Fiction', 'TV Movie', 'Thriller', 'War', 'Western',
+    'African Languages', 'Asian Languages', 'Germanic Languages',
+    'Other Languages', 'Romance Languages', 'Slavic Languages',
+    'Africa', 'Asia', 'Europe', 'North America', 'Oceania', 'South America'
+]
+
+# Se filtra columnas_binarias para incluir solo las que esten presentes en matriz_caracteristicas
+columnas_presentes = [col for col in columnas_binarias if col in caracteristicas_columnas]
+
+# Se obtienen indices de las columnas binarias
+indices_binarias = [caracteristicas_columnas.index(col) for col in columnas_presentes]
+
+# Se escalan las columnas binarias en matriz_caracteristicas
+matriz_caracteristicas[:, indices_binarias] *= 0.3
+
+# Se reduce dimensionalidad con PCA
+
+# Se reduce la dimensionalidad a 10 componentes
+pca = PCA(n_components=10)
+reduced_features = pca.fit_transform(matriz_caracteristicas)
+
+matriz_caracteristicas = reduced_features
+
+# Se hace fit a los vecinos más cercanos usando la similitud coseno
+# Usando una busqueda "brute force" para mantener la simplicidad
+model = NearestNeighbors(metric='cosine', algorithm='brute')
+model.fit(matriz_caracteristicas)
+
+def recomendacion(titulo, n_neighbors=5):
+    try:
+        # Normalizamos el título para que coincida con el dataset
+        titulo = titulo.title()
+        
+        # Buscamos el índice de la película ingresada
+        movie_index = ds.movies_ml_details[ds.movies_ml_details['title'] == titulo].index[0]
+
+        # Calculamos las distancias e índices de las películas similares
+        distancias, indices = model.kneighbors([matriz_caracteristicas[movie_index]], n_neighbors=n_neighbors+1)
+
+        # Excluimos la película ingresada por el usuario (primer resultado es siempre la misma película)
+        similar_movies = indices[0][1:]
+        similar_distances = distancias[0][1:]
+
+        # Obtenemos los detalles de las películas similares
+        recomendaciones = ds.movies_ml_details.iloc[similar_movies][['title', 'popularity', 'release_year']].copy()
+        recomendaciones['similarity_score'] = 1 - similar_distances  # Convertimos la distancia en puntaje de similitud
+
+        # Formateamos las recomendaciones como una lista de texto
+        resultados = []
+        for _, row in recomendaciones.iterrows():
+            resultados.append(
+                f"Película: {row['title']} | Año: {row['release_year']} | Popularidad: {row['popularity']:.2f} | Similitud: {row['similarity_score']:.2f}"
+            )
+        return "\n".join(resultados)  # Devolvemos como texto separado por líneas
+    except IndexError:
+        return f"No se encontró una película con el título: {titulo}"
+    except Exception as e:
+        return f"Ha ocurrido un error: {str(e)}"

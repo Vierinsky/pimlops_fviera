@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Form
 from fastapi.responses import HTMLResponse 
-from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_titulo, votos_titulo, get_actor, get_director
+from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_titulo, votos_titulo, get_actor, get_director, recomendacion
 
 # TO-DO: 
 # Hacer el modelo de recomendación.
@@ -8,7 +8,8 @@ from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_
 # Informe EDA. 
 # Hacer video.
 # BONUS: 
-#       * Hacer readme
+#       * Nube de palabras títulos de películas.
+#       * Hacer readme.
 #       LISTO -->* Función votos_titulo devuelve solo una linea si respuesta consta de dos lineas. 
 # LISTO --> Hacer las 2 funciones faltantes.
 # LISTO --> Hacer páginas de las funciones faltantes en la API.
@@ -33,7 +34,7 @@ def home():
                 <li><a href="/votos-titulo">Votos de una película</a></li>
                 <li><a href="/get_actor">Get Actor</a></li>
                 <li><a href="/get_director">Get Director</a></li>
-
+                <li><a href="/recomendacion">Recomendación</a></li>
             </ul>
         </body>
     </html>
@@ -210,6 +211,37 @@ def resultado_get_director(nombre_director: str = Form(...)):
             <h1>Resultado</h1>
             {resultado}
             <button type="button" onclick="window.location.href='/get_director'">Atrás</button> <button type="button" onclick="window.location.href='/'">Home</button>
+        </body>
+    </html>
+    """
+# Página para recomendación
+@app.get("/recomendacion", response_class=HTMLResponse)
+def form_recomendacion():
+    return """
+    <html>
+        <body>
+            <h1>Recomendador de Películas</h1>
+            <form action="/recomendacion" method="post">
+                <label for="titulo">Escribe el título de una película:</label><br>
+                <input type="text" id="titulo" name="titulo" required><br>
+                <button type="submit">Enviar</button> <button onclick="window.location.href='/'">Home</button>
+            </form>
+        </body>
+    </html>
+    """
+
+@app.post("/recomendacion", response_class=HTMLResponse)
+def resultado_recomendacion(titulo: str = Form(...)):
+    # Llamamos a la función recomendacion
+    resultado = recomendacion(titulo)
+
+    # Formateamos la respuesta en HTML
+    return f"""
+    <html>
+        <body>
+            <h1>Recomendaciones para "{titulo}"</h1>
+            <pre>{resultado}</pre> <!-- Se usa <pre> para mostrar el texto con formato -->
+            <button onclick="window.location.href='/recomendacion'">Atrás</button> <button onclick="window.location.href='/'">Home</button>
         </body>
     </html>
     """

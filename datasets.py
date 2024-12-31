@@ -10,6 +10,8 @@ movies_details_path = os.path.join(base_path, "datasets", "movies_details.csv")
 movies_score_path = os.path.join(base_path, "datasets", "movies_score.csv")
 movies_actors_path = os.path.join(base_path, "datasets", "movies_actors.csv")
 movies_directors_path = os.path.join(base_path, "datasets", "movies_directors.csv")
+movies_ml_path = os.path.join(base_path, "datasets", "movies_ml_processed.csv")
+movies_ml_details_path = os.path.join(base_path, "datasets", "movies_ml_details.csv")
 
 # Se cargan los dataset en una variable global
 try:
@@ -18,6 +20,9 @@ try:
     movies_score = pd.read_csv(movies_score_path)
     movies_actors = pd.read_csv(movies_actors_path)
     movies_directors = pd.read_csv(movies_directors_path)
+    movies_ml = pd.read_csv(movies_ml_path)
+    movies_ml_details = pd.read_csv(movies_ml_details_path)
+    
 except FileNotFoundError as e:
     raise Exception(f"Error al cargar los datasets: {e}")
 
