@@ -7,8 +7,8 @@ from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_
 # Hacer video.
 # BONUS: 
 #       LISTO -->* Nube de palabras títulos de películas.
-#       * Hacer readme.
 #       LISTO -->* Función votos_titulo devuelve solo una linea si respuesta consta de dos lineas. 
+# LISTO --> Hacer readme.
 # LISTO --> Hacer las 2 funciones faltantes.
 # LISTO --> Hacer páginas de las funciones faltantes en la API.
 # LISTO --> * Corregir funcionamiento funciones, solo la primera funciona.
