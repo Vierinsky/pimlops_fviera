@@ -26,7 +26,7 @@ def home():
     return """
     <html>
         <body>
-            <h1>Bienvenido a la API de Películas</h1>
+            <h1>Sistema de Recomendación de Películas</h1>
             <ul>
                 <li><a href="/cantidad-filmaciones-mes">Películas estrenadas por mes</a></li>
                 <li><a href="/cantidad-filmaciones-dia">Películas estrenadas por día</a></li>
