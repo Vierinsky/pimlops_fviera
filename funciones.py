@@ -62,7 +62,7 @@ def score_titulo(titulo_usuario):
         return "\n".join(resultados)
     
     except Exception as e:
-        return f"<p>Ocurrió un error inesperado {str(e)}<p>"
+        return f"<p>Ocurrió un error inesperado {str(e)}</p>"
     
 # def votos_titulo( titulo_de_la_filmación ): 
 # Se ingresa el título de una filmación esperando como respuesta el título, la cantidad de votos y el valor promedio de las votaciones. 
@@ -87,19 +87,19 @@ def votos_titulo(titulo_usuario):
             # Revisa que la cantidad de valoraciones sea mayor a 2000 y agrega la respuesta apropiada a la lista vacia resultados
             if row['vote_count'] < 2000:
                 resultados.append(
-                    f"La película {row['title']} cuenta con menos de 2000 valoraciones, por lo tanto no se muestran sus valores."
+                    f"<p>La película <b>{row['title']}</b> cuenta con menos de 2000 valoraciones, por lo tanto no se muestran sus valores.</p>"
                 )
             else:
                 # Agrega la respuesta apropiada a la lista vacia resultados solo si la película tiene más de 2000 valoraciones
                 resultados.append(
-                    f"La película {row['title']} fue estrenada en el año {row['release_year']}. "
-                    f"La misma cuenta con un total de {row['vote_count']} valoraciones, con un promedio de {row['vote_average']}."
+                    f"<p>La película <b>{row['title']}</b> fue estrenada en el año <b>{row['release_year']}</b>. "
+                    f"La misma cuenta con un total de <b>{row['vote_count']}</b> valoraciones, con un promedio de <b>{row['vote_average']}</b>.</p>"
                 )
         # Une y retorna las respuestas separandolas por una nueva línea 
         return "\n".join(resultados)
     
     except Exception as e:
-        return f'Ocurrió un error inesperado {str(e)}'
+        return f'<p>Ocurrió un error inesperado {str(e)}</p>'
     
 # def get_actor( nombre_actor ): 
 # Se ingresa el nombre de un actor que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. 
