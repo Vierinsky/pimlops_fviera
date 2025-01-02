@@ -118,7 +118,7 @@ def get_actor(nombre_actor):
             retorno_sum = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].sum()
             retorno_avg = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].mean()
 
-            return f'{nombre_actor} ha participado de {filmaciones_sum} cantidad de filmaciones, el mismo ha conseguido un retorno de {retorno_sum:.2f} con un promedio de {retorno_avg:.2f} por filmación'
+            return f'<b>{nombre_actor}</b> ha participado de <b>{filmaciones_sum}</b> cantidad de filmaciones, el mismo ha conseguido un retorno de <b>{retorno_sum:.2f}</b> con un promedio de <b>{retorno_avg:.2f}/<b> por filmación.'
         else:
             return "Por favor introduce un nombre válido"
     except Exception as e:
@@ -144,7 +144,7 @@ def get_director(nombre_director):
 
         # Se revisa si el director tiene películas en el dataset
         if director_movies_details.empty:
-            return f"No se encontraron películas dirigidas por {nombre_director}.</b><br>"
+            return f"No se encontraron películas dirigidas por <b>{nombre_director}.</b><br>"
         
         # Se calcula el "éxito" del director
         total_return = director_movies_details['return'].dropna().sum()
@@ -260,6 +260,6 @@ def recomendacion(titulo, n_neighbors=5):
             )
         return "\n".join(resultados)  # Devolvemos como texto separado por líneas
     except IndexError:
-        return f"No se encontró una película con el título: {titulo}"
+        return f"No se encontró una película con el título: <b>{titulo}</b>"
     except Exception as e:
         return f"Ha ocurrido un error: {str(e)}"
