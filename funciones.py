@@ -87,7 +87,7 @@ def votos_titulo(titulo_usuario):
             # Revisa que la cantidad de valoraciones sea mayor a 2000 y agrega la respuesta apropiada a la lista vacia resultados
             if row['vote_count'] < 2000:
                 resultados.append(
-                    f"<p>La película <b>{row['title']}</b> cuenta con menos de 2000 valoraciones, por lo tanto no se muestran sus valores.</p>"
+                    f"<p>La película <b>{row['title']}</b> cuenta con <b>menos de 2000 valoraciones</b>, por lo tanto <b>no</b> se muestran sus valores.</p>"
                 )
             else:
                 # Agrega la respuesta apropiada a la lista vacia resultados solo si la película tiene más de 2000 valoraciones
