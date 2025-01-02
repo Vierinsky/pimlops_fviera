@@ -155,7 +155,7 @@ def get_director(nombre_director):
             resultados.append(
                 f"<p>Título: <b>{row['title']}</b><br>"
                 f"Año de estreno: <b>{row['release_year']}</b><br>"
-                f"Revenue: <b>{row['revenue']:,}</b><br>"
+                f"Ganancia: <b>{row['revenue']:,}</b><br>"
                 f"Presupuesto: <b>{row['budget']:,}</b><br>"
                 f"Retorno: <b>{row['return']:.2f}</b></p>"
             )
