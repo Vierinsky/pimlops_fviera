@@ -118,7 +118,7 @@ def get_actor(nombre_actor):
             retorno_sum = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].sum()
             retorno_avg = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].mean()
 
-            return f'<b>{nombre_actor}</b> ha participado de <b>{filmaciones_sum}</b> cantidad de filmaciones, el mismo ha conseguido un retorno de <b>{retorno_sum}</b> con un promedio de <b>{retorno_avg}/<b> por filmación.'
+            return f'<b>{nombre_actor}</b> ha participado de <b>{filmaciones_sum}</b> cantidad de filmaciones, el mismo ha conseguido un retorno de <b>{retorno_sum:.2f}</b> con un promedio de <b>{retorno_avg:.2f}/<b> por filmación.'
         else:
             return "Por favor introduce un nombre válido"
     except Exception as e:
