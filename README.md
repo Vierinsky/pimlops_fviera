@@ -1,4 +1,4 @@
-![Logo Soy Henry](source/soyhenry_logo.png)
+![alt text](_src/soyhenry_logo.png)
 
 # Sistema de Recomendación de Películas
 
