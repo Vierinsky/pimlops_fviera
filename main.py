@@ -2,21 +2,6 @@ from fastapi import FastAPI, Form
 from fastapi.responses import HTMLResponse 
 from funciones import cantidad_filmaciones_mes, cantidad_filmaciones_dia, score_titulo, votos_titulo, get_actor, get_director, recomendacion
 
-# TO-DO: 
-# Informe EDA.
-# Hacer video.
-# BONUS: 
-#       LISTO -->* Nube de palabras títulos de películas.
-#       LISTO -->* Función votos_titulo devuelve solo una linea si respuesta consta de dos lineas. 
-# LISTO --> Hacer readme.
-# LISTO --> Hacer las 2 funciones faltantes.
-# LISTO --> Hacer páginas de las funciones faltantes en la API.
-# LISTO --> * Corregir funcionamiento funciones, solo la primera funciona.
-# LISTO --> * Implementar boton home.
-# LISTO --> Hacer el modelo de recomendación.
-# LISTO --> Hacer endopoint de modelo.
-
-
 # Crea unas instancia de la aplicación
 app = FastAPI()
 

@@ -118,7 +118,7 @@ def get_actor(nombre_actor):
             retorno_sum = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].sum()
             retorno_avg = merge_df.loc[merge_df['actor_name'] == nombre_actor, 'return'].mean()
 
-            return f'<b>{nombre_actor}</b> ha participado de <b>{filmaciones_sum}</b> cantidad de filmaciones, el mismo ha conseguido un retorno de <b>{retorno_sum:.2f}</b> con un promedio de <b>{retorno_avg:.2f}<b> por filmación.'
+            return f'<b>{nombre_actor}</b> ha participado de <b>{filmaciones_sum}</b> cantidad de filmaciones y ha conseguido un retorno de <b>{retorno_sum:.2f}</b> con un promedio de <b>{retorno_avg:.2f}<b> por filmación.'
         else:
             return "Por favor introduce un nombre válido"
     except Exception as e:
@@ -200,7 +200,6 @@ caracteristicas_columnas = [
 matriz_caracteristicas = ds.movies_ml[caracteristicas_columnas].values
 
 # Se disminuye el peso de las columnas binarias
-
 columnas_binarias = [
     'Action', 'Adventure', 'Animation', 'Comedy', 'Crime',
     'Documentary', 'Drama', 'Family', 'Fantasy', 'Foreign',
@@ -221,7 +220,6 @@ indices_binarias = [caracteristicas_columnas.index(col) for col in columnas_pres
 matriz_caracteristicas[:, indices_binarias] *= 0.3
 
 # Se reduce dimensionalidad con PCA
-
 # Se reduce la dimensionalidad a 10 componentes
 pca = PCA(n_components=10)
 reduced_features = pca.fit_transform(matriz_caracteristicas)
