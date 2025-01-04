@@ -10,7 +10,7 @@ from sklearn.neighbors import NearestNeighbors
 
 def cantidad_filmaciones_mes(mes_input: str):
     try:
-        mes_usuario = mes_input.capitalize()
+        mes_usuario = mes_input.title()
         meses_lista = ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
         if mes_usuario in meses_lista:
             n_peliculas = ds.movies_date[ds.movies_date['release_month'] == mes_usuario].shape[0]
@@ -26,8 +26,14 @@ def cantidad_filmaciones_mes(mes_input: str):
     
 def cantidad_filmaciones_dia(dia_input):
     try:    
-        dia_usuario = dia_input.capitalize()
+        dia_usuario = dia_input.title()
         dias_lista = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
+
+        if dia_usuario == 'Miercoles':
+            dia_usuario = 'Miércoles'
+        elif dia_usuario == 'Sabado':
+            dia_usuario = 'Sábado'
+
         if dia_usuario in dias_lista:
             n_peliculas = ds.movies_date[ds.movies_date['release_day'] == dia_usuario].shape[0]
             return f'{n_peliculas} fueron estrenadas en los días {dia_usuario}'
